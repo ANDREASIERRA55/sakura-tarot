@@ -14,6 +14,7 @@ onMounted(() => {
     document.dispatchEvent(new CustomEvent('card-flipped', { detail: flipped.value }));
   }, 0);
 });
+
 </script>
 
 <template>
@@ -61,7 +62,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-
+  
 }
 
 .card-back {

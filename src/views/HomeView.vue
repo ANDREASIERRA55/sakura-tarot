@@ -13,6 +13,7 @@ const fetchCards = async () => {
     );
     const data = await response.json();
     cards.value = data;
+    console.log(data);
   } catch (error) {
     console.error("Error fetching cards:", error);
   }
@@ -20,19 +21,6 @@ const fetchCards = async () => {
 
 onMounted(fetchCards);
 
-const handleCardFlipped = (card) => {
-  card.flipped = true;
-  const flippedCards = cards.value.filter((c) => c.flipped);
-  if (flippedCards.length === 3) {
-    const message = generateMessage(flippedCards);
-    router.push({ name: "Message", params: { message } });
-  }
-};
-
-const generateMessage = () => {
-  // Lógica para generar el mensaje basado en las cartas seleccionadas
-  return "Mensaje de las 3 cartas seleccionadas";
-};
 </script>
 
 <template>
@@ -41,13 +29,15 @@ const generateMessage = () => {
       <h1>TAROT SAKURA</h1>
       <h2>* Elige 3 cartas PASADO, PRESENTE, FUTURO para ver tu mensaje *</h2>
       <div class="card-container">
-        <Card
-          v-for="card in cards"
-          :key="card.id"
-          :card="card"
-          @card-flipped="handleCardFlipped(card)"
-        />
+        <img
+          v-for="(cardo, index) in cards"
+          :key="cardo"
+          :src="cards[index].sakuraCard"/>
       </div>
+      <div class="">
+        
+      </div>
+      
     </div>
   </body>
 </template>
