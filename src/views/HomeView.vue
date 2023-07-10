@@ -1,26 +1,5 @@
 <script setup>
-import { ref, onMounted } from "vue";
-import { useRouter } from "vue-router";
-import Card from "../components/CardTarot.vue";
-
-const router = useRouter();
-const cards = ref([]);
-
-const fetchCards = async () => {
-  try {
-    const response = await fetch(
-      "https://6388b6e5a4bb27a7f78f96a5.mockapi.io/sakura-cards/"
-    );
-    const data = await response.json();
-    cards.value = data;
-    console.log(data);
-  } catch (error) {
-    console.error("Error fetching cards:", error);
-  }
-};
-
-onMounted(fetchCards);
-
+import CardTarot from "../components/CardTarot.vue";
 </script>
 
 <template>
@@ -28,25 +7,19 @@ onMounted(fetchCards);
     <div>
       <h1>TAROT SAKURA</h1>
       <h2>* Elige 3 cartas PASADO, PRESENTE, FUTURO para ver tu mensaje *</h2>
-      <div class="card-container">
-        <img
-          v-for="(cardo, index) in cards"
-          :key="cardo"
-          :src="cards[index].sakuraCard"/>
-      </div>
-      <div class="">
-        
-      </div>
-      
+      <CardTarot />
     </div>
   </body>
 </template>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+
 body {
-  background-color: #0a0909;
+  background-color: #080202;
 }
-h1{
+
+h1 {
   display: flex;
   margin-top: 0.5rem;
   font-size: 45px;
@@ -55,9 +28,9 @@ h1{
   text-align: center;
   align-items: center;
   justify-content: center;
-  -webkit-text-stroke: 3px #b90e6380;
-  -webkit-text-fill-color: #b90e6380;
-  text-shadow: 2px 2px 5px #b90e6380;
+  -webkit-text-stroke: 3px #cf137180;
+  -webkit-text-fill-color: #cf137180;
+  text-shadow: 2px 2px 5px #cf137180;
 }
 
 h2 {
@@ -70,13 +43,5 @@ h2 {
   text-align: center;
   align-items: center;
   justify-content: center;
-}
-
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 20px;
-  gap: 3px;
 }
 </style>
